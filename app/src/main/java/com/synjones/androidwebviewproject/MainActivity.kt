@@ -14,8 +14,9 @@ class MainActivity : AppCompatActivity() {
             //ServiceLoad.load 可以提取到base中
 //            ServiceLoader.load(IWebviewService::class.java).iterator().next()
 //                ?.startWebviewActivity(this, "", "百度")
-            BaseServiceLoader.load(IWebviewService::class.java)
-                ?.startWebviewActivity(this, "https://www.baidu.com", "百度",true)
+//            BaseServiceLoader.load(IWebviewService::class.java)
+//                ?.startWebviewActivity(this, "https://www.baidu.com", "百度",true)
+            BaseServiceLoader.load(IWebviewService::class.java)?.startDemoHtml(this)
         }
 
     }

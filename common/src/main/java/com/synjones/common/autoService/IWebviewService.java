@@ -8,4 +8,5 @@ import androidx.fragment.app.Fragment;
 public interface IWebviewService {
     void startWebviewActivity(Context context, String url, String title,boolean isShowActionBar);
     Fragment getWebViewFragment(String url,boolean canNativeRefresh);
+    void startDemoHtml(Context context);
 }

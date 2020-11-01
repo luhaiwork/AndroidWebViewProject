@@ -1,4 +1,4 @@
-package com.common.webview.webviewclient;
+package com.common.webview.webviewprocess.webviewclient;
 
 import android.graphics.Bitmap;
 import android.util.Log;

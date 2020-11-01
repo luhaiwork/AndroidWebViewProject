@@ -1,7 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.common.webview">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET"/>
     <application>
-        <activity android:name=".WebViewActivity" android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity android:name=".WebViewActivity" android:process=":commonwebview" android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
     </application>
 </manifest>
