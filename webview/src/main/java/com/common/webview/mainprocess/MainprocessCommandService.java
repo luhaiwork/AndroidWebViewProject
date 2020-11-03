@@ -10,6 +10,6 @@ public class MainprocessCommandService extends Service {
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
-        return null;
+        return MainProcessCommandManager.getInstance();
     }
 }

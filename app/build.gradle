@@ -37,6 +37,8 @@ dependencies {
     implementation "androidx.appcompat:appcompat:$rootProject.androidXVersion"
     implementation 'androidx.constraintlayout:constraintlayout:2.0.2'
     implementation project(path: ':webview')
+    annotationProcessor rootProject.googleAutoServiceDependency
+    implementation rootProject.googleAutoServiceDependency
 
 
 }

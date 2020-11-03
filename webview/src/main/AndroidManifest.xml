@@ -5,5 +5,6 @@
     <uses-permission android:name="android.permission.INTERNET"/>
     <application>
         <activity android:name=".WebViewActivity" android:process=":commonwebview" android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <service android:name=".mainprocess.MainprocessCommandService"/>
     </application>
 </manifest>
