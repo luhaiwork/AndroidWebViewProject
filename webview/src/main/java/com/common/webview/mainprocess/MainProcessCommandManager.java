@@ -1,14 +1,11 @@
 package com.common.webview.mainprocess;
 
-import android.content.ComponentName;
-import android.content.Intent;
 import android.os.RemoteException;
-import android.text.TextUtils;
 
+import com.common.webview.ICallbackFromMainprocessToWebViewProcessInterface;
 import com.common.webview.IWebviewprocessToMainProcessInterface;
 import com.common.webview.command.Command;
 import com.google.gson.Gson;
-import com.synjones.base.BaseApplication;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -34,13 +31,13 @@ public class MainProcessCommandManager extends IWebviewprocessToMainProcessInter
             }
         }
     }
-    public void executeCommand(String commandName, Map param){
-        mCommands.get(commandName).execute(param);
+    public void executeCommand(String commandName, Map param, ICallbackFromMainprocessToWebViewProcessInterface callbackFromMainprocessToWebViewProcessInterface){
+        mCommands.get(commandName).execute(param,callbackFromMainprocessToWebViewProcessInterface);
     }
 
     @Override
-    public void handleWebCommand(String commandName, String jsonParams) throws RemoteException {
+    public void handleWebCommand(String commandName, String jsonParams, ICallbackFromMainprocessToWebViewProcessInterface callbackFromMainprocessToWebViewProcessInterface) throws RemoteException {
 //        MainProcessCommandManager.getInstance().
-        executeCommand(commandName,new Gson().fromJson(jsonParams,Map.class));
+        executeCommand(commandName,new Gson().fromJson(jsonParams,Map.class),callbackFromMainprocessToWebViewProcessInterface);
     }
 }

@@ -34,10 +34,25 @@
             console.log("open activityA");
             window.commonjs.takeNativeAction("openPage",{target_class:"com.synjones.androidwebviewproject.MainProcessTestActivity"})
         }
+        function openActivityB(){
+            console.log("open activityB");
+            window.commonjs.takeNativeAction("openPage",{target_class:"com.synjones.androidwebviewproject.MainProcessTestBActivity"})
+        }
+
+        function login(){
+            console.log("login");
+            window.commonjs.takeNativeActionWithCallback("login", {}, function(res) {
+                 var element = document.createElement("div");
+                 element.appendChild(document.createTextNode("userName: "+res.accountName));
+                 document.getElementById('login_id').appendChild(element);
+            });
+        }
     </script>
 </head>
 <body style="height: 100%;">
 <div class="item" style="font-size: 20px; color: #ffffff" onclick="callAppToast()">调用: showToast</div>
 <div class="item" style="font-size: 20px; color: #ffffff" onclick="openActivityA()">调用: 打开act</div>
+<div class="item" style="font-size: 20px; color: #ffffff" onclick="openActivityB()">调用: 打开actB</div>
+<div class="item" id="login_id" style="font-size: 20px; color: #ffffff" onclick="login()">登录并且拿到结果</div>
 </body>
 </html>

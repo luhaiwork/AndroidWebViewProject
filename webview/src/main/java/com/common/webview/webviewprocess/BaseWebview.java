@@ -54,8 +54,21 @@ public class BaseWebview extends WebView {
         if (!TextUtils.isEmpty(jsParam)) {
             final JsParam jsParamObject = new Gson().fromJson(jsParam, JsParam.class);
             if (jsParamObject != null) {
-                WebviewProcessCommandDispatcher.getInstance().executeCommand(jsParamObject.name, new Gson().toJson(jsParamObject.param));
+                WebviewProcessCommandDispatcher.getInstance().executeCommand(jsParamObject.name, new Gson().toJson(jsParamObject.param),this);
             }
+        }
+    }
+
+    public void handleCallback(final String callbackname, final String response){
+        if(!TextUtils.isEmpty(callbackname) && !TextUtils.isEmpty(response)){
+            post(new Runnable() {
+                @Override
+                public void run() {
+                    String jscode = "javascript:commonjs.callback('" + callbackname + "'," + response + ")";
+                    Log.e("xxxxxx", jscode);
+                    evaluateJavascript(jscode, null);
+                }
+            });
         }
     }
 

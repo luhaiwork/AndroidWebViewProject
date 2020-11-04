@@ -9,6 +9,7 @@ import android.os.IBinder;
 import android.os.RemoteException;
 import android.util.Log;
 
+import com.common.webview.ICallbackFromMainprocessToWebViewProcessInterface;
 import com.common.webview.IWebviewprocessToMainProcessInterface;
 import com.common.webview.mainprocess.MainprocessCommandService;
 import com.synjones.base.BaseApplication;
@@ -41,10 +42,15 @@ public class WebviewProcessCommandDispatcher implements ServiceConnection {
         initAidlConnection();
     }
 
-    public void executeCommand(String commandName,String params){
+    public void executeCommand(String commandName,String params,final BaseWebview baseWebview){
         if(iWebviewprocessToMainProcessInterface !=null){
             try {
-                iWebviewprocessToMainProcessInterface.handleWebCommand(commandName,params);
+                iWebviewprocessToMainProcessInterface.handleWebCommand(commandName, params, new ICallbackFromMainprocessToWebViewProcessInterface.Stub() {
+                    @Override
+                    public void onResult(String callbackName, String response) throws RemoteException {
+                        baseWebview.handleCallback(callbackName,response);
+                    }
+                });
             } catch (RemoteException e) {
                 e.printStackTrace();
             }
